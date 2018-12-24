@@ -1,6 +1,5 @@
 import org.scalatest.FunSuite
-import InitialPractice.model.Cat
-import InitialPractice.model.AnimalSize
+import InitialPractice.model.{Animal, AnimalSize, Cat}
 import service.AnimalService
 
 class InitialPracticeEntryTest extends FunSuite{
@@ -8,8 +7,6 @@ class InitialPracticeEntryTest extends FunSuite{
 
 
   def convertionFunction(num:Int): String ={
-      print("I am in the converstion")
-      println(num.toString())
     num.toString()
 
   }
@@ -29,5 +26,22 @@ class InitialPracticeEntryTest extends FunSuite{
       assert(elem.size.equals(AnimalSize.Big))
     }
   }
+  test ("getMediumAnimals"){
+    for( elem <- AnimalService.apply.getMediumSizedAnimals()){
+      assert(elem.size.equals(AnimalSize.Medium))
+    }
+  }
+  test ("getSmallAnimals"){
+    for( elem <- AnimalService.apply.getSmallSizedAnimals()){
+      assert(elem.size.equals(AnimalSize.Small))
+    }
+  }
 
+  test("SortedAnimalAge"){
+    val sorted = AnimalService.apply.animalList.sortBy((item)=> item.age)
+    println(sorted)
+    print(AnimalService.apply.animalList.sortWith((x,y)=>{x.age > y.age}))
+
+    //assert(sorted(0).age < sorted(sorted.length-1).age,"The first age is not less than last, sorted not working")
+  }
 }

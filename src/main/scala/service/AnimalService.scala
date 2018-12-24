@@ -10,7 +10,7 @@ class AnimalService {
 
   //Create a final constant of animal List just for this practice exercise to work on
 
-  private val animalList :List[Animal]= {
+  val animalList :List[Animal]= {
     List(
       new Dog(name="Bob",size = AnimalSize.Big,age = 5),
       new Cat(name = "Puddy",size = AnimalSize.Medium,age = 3),
@@ -20,7 +20,6 @@ class AnimalService {
 
   def getBigSizedAnimals():List[Animal]={
     getAnimalBySize(AnimalSize.Big)
-
   }
   def getMediumSizedAnimals():List[Animal]={
     getAnimalBySize(AnimalSize.Medium)
