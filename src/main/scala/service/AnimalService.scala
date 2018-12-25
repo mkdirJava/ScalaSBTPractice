@@ -1,6 +1,8 @@
 package service
 
 import InitialPractice.model._
+import InitialPractice.model.saleables.animals._
+import InitialPractice.model.saleables.animals.pet.{Cat, Dog, Mouse}
 
 object AnimalService{
   private val animalService:AnimalService = new AnimalService()
@@ -28,13 +30,13 @@ class AnimalService {
     getAnimalBySize(AnimalSize.Small)
   }
 
-  private def getAnimalBySize(animalSize: AnimalSize.Value)={
 
+
+  private def getAnimalBySize(animalSize: AnimalSize.Value)={
     for {
       elem:Animal <- animalList
       if(elem.size.equals(animalSize))
     }yield elem
-
   }
 
 

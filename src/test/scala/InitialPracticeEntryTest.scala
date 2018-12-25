@@ -1,5 +1,5 @@
+import InitialPractice.model.saleables.animals.AnimalSize
 import org.scalatest.FunSuite
-import InitialPractice.model.{Animal, AnimalSize, Cat}
 import service.AnimalService
 
 class InitialPracticeEntryTest extends FunSuite{
