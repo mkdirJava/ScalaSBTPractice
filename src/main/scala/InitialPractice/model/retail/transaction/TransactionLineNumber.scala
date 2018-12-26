@@ -11,7 +11,7 @@ class TransactionLineNumber(
                     val item:Saleable,
                     val quantity:Int,
                     val price:BigDecimal,
-                    val transctionDate:LocalDateTime) {
+                    ) {
 
 
 }

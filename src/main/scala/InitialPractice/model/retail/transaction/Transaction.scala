@@ -1,5 +1,7 @@
 package InitialPractice.model.retail.transaction
 
-class Transaction(val lineNumbers:List[TransactionLineNumber]) {
+import java.time.LocalDateTime
+
+class Transaction(val lineNumbers:List[TransactionLineNumber],val transactionDate:LocalDateTime) {
 
 }
