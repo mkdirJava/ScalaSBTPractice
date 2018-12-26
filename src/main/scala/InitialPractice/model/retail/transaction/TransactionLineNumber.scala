@@ -2,7 +2,8 @@ package InitialPractice.model.retail.transaction
 
 import java.time.LocalDateTime
 
-import InitialPractice.model.person.{Buyer, Seller}
+import InitialPractice.model.company.role.Seller
+import InitialPractice.model.person.Buyer
 import InitialPractice.model.saleables.Saleable
 
 class TransactionLineNumber(
