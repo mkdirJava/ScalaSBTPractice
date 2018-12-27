@@ -1,13 +1,10 @@
 package InitialPractice.model.retail.transaction
 
-import java.time.LocalDateTime
-
-import InitialPractice.model.company.role.Seller
-import InitialPractice.model.person.Buyer
+import InitialPractice.model.company.role.{Employee, Seller}
 import InitialPractice.model.saleables.Saleable
 
 class TransactionLineNumber(
-                    val buyer:Buyer,
+                    val employee: Employee,
                     val seller: Seller,
                     val item:Saleable,
                     val quantity:Int,

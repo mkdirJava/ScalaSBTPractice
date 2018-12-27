@@ -1,7 +1,5 @@
 package InitialPractice.model.company.role
 
-import InitialPractice.model.retail.MiddleRetailer
-
 class  Auctioneer(
                     id:Long,
                     companyName:String,
