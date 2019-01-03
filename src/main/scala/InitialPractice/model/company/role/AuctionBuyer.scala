@@ -11,7 +11,9 @@ import scala.util.Random
 class AuctionBuyer (firstName:String,
                     lastName:String,
                     id:String,
-                    company: Company)extends Buyer(firstName,lastName,id,company) {
+                    company: Company,
+                    userName:String) extends Buyer(firstName,lastName,id,company,userName) {
+  this:Employee=>
 
   var currentBid :BigDecimal = null;
   var registeredAuctionHouse:AuctionHouse = null
@@ -28,6 +30,7 @@ class AuctionBuyer (firstName:String,
   def placeBid(saleable: Saleable)={
     val random:Random = new Random()
     currentBid = BigDecimal.apply(random.nextDouble())
+    println(s"my name is ${this.firstName} from ${this.company} I am bidding ${currentBid}")
     Optional.of(currentBid)
 
   }

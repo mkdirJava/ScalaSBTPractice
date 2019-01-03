@@ -6,9 +6,10 @@ import InitialPractice.model.saleables.Saleable
 class Buyer (firstName:String,
              lastName:String,
              id:String,
-             company: Company) extends Employee (firstName,lastName,id,company){
+             company: Company,
+             userName:String) extends Employee (firstName,lastName,id,company,userName){
 
-     var boughtItems:List[Saleable] = List.empty
+     var boughtItems:Map[Saleable,Int] = Map.empty
 
 
 }

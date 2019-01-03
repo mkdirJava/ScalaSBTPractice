@@ -6,6 +6,6 @@ class Farmer(
               firstName:String,
               lastName:String,
               id:String
-              ) extends Person(firstName,lastName,id) with Buyer with Seller {
+              ) extends Person(firstName,lastName,id){
   var herd:Map[Animal,Int]= Map.empty
 }

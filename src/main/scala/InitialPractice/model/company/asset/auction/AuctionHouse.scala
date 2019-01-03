@@ -3,9 +3,11 @@ package InitialPractice.model.company.asset.auction
 import InitialPractice.model.company.asset.Venue
 import InitialPractice.model.company.role._
 
-class AuctionHouse(value:BigDecimal,id:Int,var auctioneer:Auctioneer) extends Venue(value,id) with AuctionAction{
+import scala.collection.mutable.MutableList
 
-  var buyerList:List[AuctionBuyer] = List.empty
-  var sellerList:List[AuctionSeller] = List.empty
+class AuctionHouse(id:Long, value:BigDecimal,var auctioneer: Auctioneer) extends Venue(value,id) with AuctionAction{
+
+  var buyerList:MutableList[AuctionBuyer] = MutableList.empty
+  var sellerList:MutableList[AuctionSeller] = MutableList.empty
 
 }

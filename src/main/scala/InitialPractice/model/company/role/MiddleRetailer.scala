@@ -2,21 +2,19 @@ package InitialPractice.model.company.role
 
 import java.time.LocalDateTime
 
-import InitialPractice.model.retail.basket.Basket
-import InitialPractice.model.retail.transaction.exceptions.{BuyerHasNotEnoughMoneyException, TransactionException}
-import InitialPractice.model.retail.transaction.ledger.Ledger
 import InitialPractice.model.retail.transaction.{Invoice, Receipt, Transaction, TransactionLineNumber}
+import InitialPractice.model.retail.transaction.exceptions.{ActionException, BuyerHasNotEnoughMoneyException, TransactionException}
 import InitialPractice.model.saleables.Saleable
 
-trait MiddleRetailer {
-  this:ServiceProvider =>
+trait MiddleRetailer extends SellerAction {
+  this:Seller=>
 
-  def makeTransaction(seller: Seller,buyer: Buyer,saleItems:Map[Saleable,Int])={
+  @throws(classOf[BuyerHasNotEnoughMoneyException])
+  protected def doTransaction(seller:Seller,buyer: Buyer,saleItems:Map[Saleable,Int])={
 
     val basketTotal = saleItems.map(saleItem=>saleItem._1.cost * saleItem._2).sum
     if(buyer.company.balance < basketTotal)
       throw new BuyerHasNotEnoughMoneyException(s"The Buyer ${buyer} has not enough funds for ${basketTotal}")
-
     try{
       buyer.company.balance -= basketTotal
       seller.company.balance += basketTotal
@@ -47,7 +45,8 @@ trait MiddleRetailer {
       case exception:Exception =>
         throw new TransactionException(s"Something went wrong in the transaction :${exception.getMessage()}")
     }
-
   }
+
+
 
 }

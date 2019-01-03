@@ -2,5 +2,5 @@ package InitialPractice.model.saleables.animals.farmed
 
 import InitialPractice.model.saleables.animals.AnimalSize
 
-class Cow(name:String,age:Int,price:BigDecimal) extends FarmAnimal(name,age,AnimalSize.Big,price) {
+class Cow(age:Int,cost:BigDecimal, discount:BigDecimal) extends FarmAnimal(age,AnimalSize.Big,cost,discount) {
 }

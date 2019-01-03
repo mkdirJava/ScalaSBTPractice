@@ -4,6 +4,8 @@ import InitialPractice.model.company.Company
 
 class Employee (firstName:String,
                 lastName:String,
-                id:String, val company: Company) extends Person (firstName,lastName,id){
+                id:String,
+                val company: Company,
+                val userName:String) extends Person (firstName,lastName,id){
 
 }

@@ -1,5 +1,5 @@
 package InitialPractice.model.company.asset
 
-abstract class Venue (value:BigDecimal, id:Int) extends Asset(value,id) {
+abstract class Venue (value:BigDecimal, id:Long) extends Asset(value,id) {
 
 }
