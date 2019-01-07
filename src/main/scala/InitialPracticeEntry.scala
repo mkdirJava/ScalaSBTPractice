@@ -7,8 +7,6 @@ object InitialPracticeEntry extends App {
     println("Going to do something with a function")
 
     val converted = for (num <- 1 to 10) yield {
-
-
       func(num)
       num
     }

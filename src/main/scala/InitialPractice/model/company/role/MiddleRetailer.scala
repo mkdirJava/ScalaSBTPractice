@@ -10,6 +10,7 @@ trait MiddleRetailer extends SellerAction {
   this:Seller=>
 
   @throws(classOf[BuyerHasNotEnoughMoneyException])
+  @throws(classOf[TransactionException])
   protected def doTransaction(seller:Seller,buyer: Buyer,saleItems:Map[Saleable,Int])={
 
     val basketTotal = saleItems.map(saleItem=>saleItem._1.cost * saleItem._2).sum
@@ -35,8 +36,8 @@ trait MiddleRetailer extends SellerAction {
           new TransactionLineNumber(seller,this,item._1,item._2,item._1.cost)).toList
 
       val sellerServiceTransaction:Transaction = new Transaction(sellerServiceTransactionLineNumbers,transactionDateTime)
-      this.company.invoiceList :+  Invoice( seller,seller.company,price = basketTotal, transaction = sellerServiceTransaction,date = transactionDateTime)
-      seller.company.receiptList:+  Receipt( this,this.company,price = basketTotal, transaction = sellerServiceTransaction,date = transactionDateTime)
+      this.company.invoiceList +=  Invoice( seller,seller.company,price = basketTotal, transaction = sellerServiceTransaction,date = transactionDateTime)
+      seller.company.receiptList +=  Receipt( this,this.company,price = basketTotal, transaction = sellerServiceTransaction,date = transactionDateTime)
 
 
       buyerSellerTransaction

@@ -6,10 +6,12 @@ import InitialPractice.model.company.role._
 import InitialPractice.model.saleables.animals.farmed.{Cow, Pig, Sheep}
 import org.scalatest.FunSuite
 
+import scala.collection.mutable.{ListBuffer, MutableList}
+
 
 object AuctionTest{
 
-  def createAuctionSellers(company: Company)={
+  def createAuctionSellers(company: Company): MutableList[Employee] ={
     val sellerOne = new AuctionSeller(s"Bob",s"Jones","1",company,s"${company.companyName}seller Bob.J")
     sellerOne.saleableItems = Map(
       (new Cow(2,BigDecimal(0),BigDecimal(0))-> 1),
@@ -22,18 +24,18 @@ object AuctionTest{
       (new Pig(2,BigDecimal(0),BigDecimal(0))->11),
       (new Sheep(1,BigDecimal(0),BigDecimal(0))->41)
     )
-    List(sellerOne,sellerTwo)
+    MutableList(sellerOne,sellerTwo)
   }
 
-  def createBuyers(company: Company) ={
-    List(
+  def createBuyers(company: Company):MutableList[Employee] ={
+    MutableList(
       new AuctionBuyer(s"Todd",s"Harper","3",company,s"${company.companyName} Buyer Todd.H"),
       new AuctionBuyer(s"Macc",s"Tide","4",company,s"${company.companyName} Buyer Macc.T")
     )
   }
   def createCompany(companyName:String)={
     val company = new Company(companyName,BigDecimal(0))
-    company.employeeList = createAuctionSellers(company) ::: createBuyers(company)
+    company.employeeList = createAuctionSellers(company) ++= createBuyers(company)
     company
   }
 
@@ -66,10 +68,10 @@ class AuctionTest extends FunSuite{
         case auctionSeller: AuctionSeller => AuctionTest.auctionHouse.registerSeller(auctionSeller)
         })
     AuctionTest.auctionHouse.conductAuction()
-    AuctionTest.companies.flatMap(company => company.invoiceList).foreach(invoice=>println(invoice))
-    AuctionTest.companies.flatMap(company => company.receiptList).foreach(receipt=>println(receipt))
-    AuctionTest.auctionHouse.buyerList.flatMap(buyer =>buyer.boughtItems).foreach(bought=>println(bought))
-    AuctionTest.auctionHouse.sellerList.flatMap(seller =>seller.saleableItems).foreach(item=>println(item))
+    AuctionTest.companies.flatMap(company => company.invoiceList).foreach(invoice=>println(s"The invoice ${invoice}"))
+    AuctionTest.companies.flatMap(company => company.receiptList).foreach(receipt=>println(s"The receipt ${receipt}"))
+    AuctionTest.auctionHouse.buyerList.flatMap(buyer =>buyer.boughtItems).foreach(bought=>println(s"The bought ${bought}"))
+    AuctionTest.auctionHouse.sellerList.flatMap(seller =>seller.saleableItems).foreach(item=>println(s"The Item ${item}"))
 
   }
 /*
