@@ -24,6 +24,7 @@ class FarmAuctioneer(firstName:String,
             val buyerBid = this.takeBids(saleableItem._1,buyerList)
             try{
               doTransaction(sellerToSaleables._1,buyerBid._1,Map.apply(saleableItem))
+              performAction(sellerToSaleables._1, buyerBid._1, Map.apply(saleableItem))
             }catch {
               case e: TransactionException => println(s"cannot do transaction with ${buyerBid._1}, issue of : ${e.getMessage()}")
             }
@@ -43,12 +44,13 @@ class FarmAuctioneer(firstName:String,
             s"Seller quantity ${seller.saleableItems(saleable)}" +
             s"Buyer quantity ${saleItems(saleable)}")
 
+        buyer.boughtItems = buyer.boughtItems + (saleable -> (seller.saleableItems(saleable) - saleItems(saleable)))
         if(seller.saleableItems(saleable) - saleItems(saleable) == 0 ){
           seller.saleableItems -= saleable
         }else{
-          seller.saleableItems.updated(saleable,seller.saleableItems(saleable) - saleItems(saleable))
+          seller.saleableItems = seller.saleableItems + (saleable -> (seller.saleableItems(saleable) - saleItems(saleable)))
         }
-        buyer.boughtItems.updated(saleable , seller.saleableItems(saleable) - saleItems(saleable))
+
       })
   }
 
@@ -67,6 +69,7 @@ class FarmAuctioneer(firstName:String,
     }
     highestBid
   }
+
   private def isMoreThanOneBid(auctionBids:Map[AuctionBuyer,Optional[BigDecimal]]) ={
     auctionBids.map(bids=>bids._2).count(bid=>bid.isPresent) > 1
   }

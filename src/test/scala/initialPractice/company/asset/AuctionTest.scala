@@ -14,15 +14,15 @@ object AuctionTest{
   def createAuctionSellers(company: Company): MutableList[Employee] ={
     val sellerOne = new AuctionSeller(s"Bob",s"Jones","1",company,s"${company.companyName}seller Bob.J")
     sellerOne.saleableItems = Map(
-      (new Cow(2,BigDecimal(0),BigDecimal(0))-> 1),
-      (new Pig(1,BigDecimal(0),BigDecimal(0))->2),
-      (new Sheep(9,BigDecimal(0),BigDecimal(0))->1)
+      (new Cow(2,BigDecimal(0))-> 1),
+      (new Pig(1,BigDecimal(0))->2),
+      (new Sheep(9,BigDecimal(0))->1)
     )
     val sellerTwo = new AuctionSeller(s"Pete",s"Major","2",company,s"${company.companyName} Seller Pete.M")
     sellerTwo.saleableItems =  Map(
-      (new Cow(5,BigDecimal(0),BigDecimal(0))->23),
-      (new Pig(2,BigDecimal(0),BigDecimal(0))->11),
-      (new Sheep(1,BigDecimal(0),BigDecimal(0))->41)
+      (new Cow(5,BigDecimal(0))->23),
+      (new Pig(2,BigDecimal(0))->11),
+      (new Sheep(1,BigDecimal(0))->41)
     )
     MutableList(sellerOne,sellerTwo)
   }
