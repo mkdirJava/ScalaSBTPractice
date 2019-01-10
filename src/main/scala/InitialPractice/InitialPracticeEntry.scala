@@ -1,4 +1,4 @@
-import InitialPractice.model.saleables.animals.pet.Cat
+package InitialPractice
 
 object InitialPracticeEntry extends App {
 

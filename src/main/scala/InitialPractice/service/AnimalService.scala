@@ -1,4 +1,4 @@
-package service
+package InitialPractice.service
 
 import InitialPractice.model._
 import InitialPractice.model.saleables.animals._

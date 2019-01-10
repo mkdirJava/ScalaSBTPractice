@@ -1,6 +1,9 @@
+package initialPractice.company.asset
+
+import InitialPractice.InitialPracticeEntry
 import InitialPractice.model.saleables.animals.AnimalSize
+import InitialPractice.service.AnimalService
 import org.scalatest.FunSuite
-import service.AnimalService
 
 class InitialPracticeEntryTest extends FunSuite{
 
