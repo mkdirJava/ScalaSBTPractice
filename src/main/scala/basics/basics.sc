@@ -22,7 +22,7 @@ def printSystemInfo()={
 printSystemInfo()
 
 class PracticeClass (){
-  def saySomthing(): Unit ={
+  def saySomthing(): Unit = {
     println("Say something, I'm looking out for you")
   }
 }
@@ -56,8 +56,45 @@ object YesIKnowTheyAreStatic{
 
 }
 
-Seq.range(1,10,1)
-println(YesIKnowTheyAreStatic.create)
+ for (i <- 1 to 10 ){
+   println(s"""This is the next count of the coutner ${YesIKnowTheyAreStatic.create}""")
+ }
+
+case class animal(val name:String){
+}
+trait MakeSound {
+  this: animal=>
+
+  def makeLoudSound={
+    println(s"""LOUD BANG ${name}""" )
+  }
+
+  def makeSound={
+    println(s"""Hi ${name}""")
+  }
+  def makeQuietSound={
+    println(s"""Whisper ${name}""")
+  }
+}
+
+class Dog(name:String) extends animal(name) with MakeSound
+class Cat(name:String) extends animal(name) with MakeSound
+class Mouse(name:String) extends animal(name) with MakeSound
+
+new Dog("Dog").makeLoudSound
+new Dog("Dog").makeSound
+new Dog("Dog").makeQuietSound
+
+new Cat("Tom").makeLoudSound
+new Cat("Tom").makeSound
+new Cat("Tom").makeQuietSound
+
+new Mouse("Jerry").makeLoudSound
+new Mouse("Jerry").makeSound
+new Mouse("Jerry").makeQuietSound
+
+
+
 
 
 
