@@ -1,6 +1,5 @@
 import java.util.function.Predicate
 
-import scala.collection.mutable.MutableList
 
 case class Person(var name:String)
 
@@ -13,22 +12,23 @@ trait nextValue[Person] {
 
 
 class ConditionIterator (personList: List[Person],p: Predicate[Person]) extends nextValue[Person]{
-  var counter= 0
-  var validPersonIndices:MutableList[Int] = MutableList.empty
-
-  for(i <- 0 until personList.length){
-    if(p.test(personList(i)))
-      validPersonIndices += i
-  }
-
+  var counter:Int= 0
 
   override def hasNext: Boolean = {
-    counter < validPersonIndices.length
+
+    var hasMore:Boolean = false
+    for(i <- counter until personList.length){
+      if(!hasMore && p.test(personList(i) )){
+        counter = i
+        hasMore = true
+      }
+    }
+    hasMore
   }
 
   override def next: Person = {
-    val person = personList(validPersonIndices(counter))
-    counter += 1
+    val person = personList(counter)
+    counter +=1
     person
   }
 
@@ -43,8 +43,7 @@ val personList = List(
 )
 
 val iter = new ConditionIterator(personList,item => {
-  println(s""" the length of the name is ${item.name.length}""")
-  item.name.length ==3
+  item.name.length == 3
 })
 
 
