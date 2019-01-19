@@ -8,8 +8,9 @@ class Dequeue[A] {
     currentTop
   }
   def next()={
-    val nextOne = elements(0)
-    elements = elements.drop(1)
+    val nextOne = elements(elements.length - 1)
+    elements = elements.slice(0,elements.length -1)
+    //println(elements)
     nextOne
   }
 }
@@ -23,5 +24,14 @@ personDequeue.push(Person("RHCP",34))
 personDequeue.push(Person("Baby",2))
 personDequeue.push(Person("Force",999999))
 
-println(personDequeue.pop())
 println(personDequeue.next())
+println(personDequeue.next())
+println(personDequeue.next())
+
+personDequeue.push(Person("RHCP",34))
+personDequeue.push(Person("Baby",2))
+personDequeue.push(Person("Force",999999))
+
+println(personDequeue.pop())
+println(personDequeue.pop())
+println(personDequeue.pop())
